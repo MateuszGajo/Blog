@@ -1,20 +1,19 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-import Nav from './features/components/Layout/Nav';
-import Home from './features/components/Home/Home';
-import Contact from './features/components/Contact/Contact';
-import AboutMe from './features/components/AboutMe/AboutMe';
-import Opinions from './features/components/Opinions/Opinions'
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import Nav from "./features/components/Layout/Nav";
+import Home from "./features/components/Home/Home";
+import Contact from "./features/components/Contact/Contact";
+import AboutMe from "./features/components/AboutMe/AboutMe";
+import Opinions from "./features/components/Opinion/Opinion";
+import Detail from "./features/components/Detail/Detail";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
-})
+  uri: "http://localhost:4000/graphql"
+});
 
 function App() {
-
-
   return (
     <ApolloProvider client={client}>
       <div className="App">
@@ -25,6 +24,7 @@ function App() {
             <Route path="/contact" component={Contact} />
             <Route path="/aboutme" component={AboutMe} />
             <Route path="/opinions" component={Opinions} />
+            <Route path="/posts/:id" component={Detail} />
           </Switch>
         </Router>
       </div>
@@ -32,7 +32,4 @@ function App() {
   );
 }
 
-export {
-  App,
-  client
-};
+export { App, client };
