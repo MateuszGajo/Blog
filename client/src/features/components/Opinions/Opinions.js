@@ -52,7 +52,7 @@ const Opinions = () => {
                     <Card className={classes.card}>
                         <CardMedia
                             className={classes.cover}
-                            image="/assets/photo.jpg"
+                            image="/assets/monika.jpg"
                             title="Live from space album cover"
                         />
                         <div className={classes.details}>
@@ -97,7 +97,7 @@ const Opinions = () => {
                             </div>
                             <CardMedia
                                 className={classes.cover}
-                                image="/assets/photo.jpg"
+                                image="/assets/sławomir.jpg"
                                 title="Live from space album cover"
                             />
                         </Card>

@@ -22,7 +22,7 @@ const AboutMe = () => {
         <Container fixed className={classes.container}>
             <Grid container spacing={3}>
                 <Grid item xs={4}>
-                    <img src='assets/photo.jpg' alt="zdjecie" className={classes.image} />
+                    <img src='assets/authorBlog.jpg' alt="zdjecie" className={classes.image} />
                 </Grid>
                 <Grid item xs={8}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, officiis, eligendi harum numquam enim blanditiis eius nostrum dolores facere voluptatibus amet qui ab, vitae error? Ipsam dicta numquam cum veniam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, officiis, eligendi harum numquam enim blanditiis eius nostrum dolores facere voluptatibus amet qui ab, vitae error? Ipsam dicta numquam cum veniam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, officiis, eligendi harum numquam enim blanditiis eius nostrum dolores facere voluptatibus amet qui ab, vitae error? Ipsam dicta numquam cum veniam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, officiis, eligendi harum numquam enim blanditiis eius nostrum dolores facere voluptatibus amet qui ab, vitae error? Ipsam dicta numquam cum veniam.</Grid>
             </Grid>

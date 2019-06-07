@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Link } from 'react-router-dom';
+
 const Nav = (props) => {
-    console.log(props)
-    const [value, setValue] = useState(JSON.parse(localStorage.getItem('navList')) || 0);
+
+    const [value, setValue] = useState(0);
     const handleChange = (e, newValue) => {
         setValue(newValue);
-        localStorage.setItem('navList', JSON.stringify(newValue))
     }
 
-
+    useEffect(() => {
+        switch (props.location.pathname) {
+            case "/":
+                setValue(0)
+                break;
+            case "/aboutme":
+                setValue(1)
+                break;
+            case "/opinions":
+                setValue(2)
+                break;
+            case "/contact":
+                setValue(3)
+                break;
+            default:
+                setValue(null)
+                break;
+        }
+    }, [])
     return (
         <nav>
             <AppBar position='static' color='default'>
