@@ -1,11 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
+
+import LeftCardLarge from "./LeftCardLarge";
+import RightCardLarge from "./RightCardLarge";
+import LeftCardSmall from "./LeftCardSmall";
+import RightCardSmall from "./RightCardSmall";
 
 const Opinions = () => {
   const useStyles = makeStyles(theme => ({
@@ -48,76 +49,32 @@ const Opinions = () => {
       alignItems="flex-start"
       className={classes.boxLeft}
     >
-      <Grid item xs={6}>
-        <Paper>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.cover}
-              image="/assets/monika.jpg"
-              title="Live from space album cover"
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5" align="right">
-                  Monika Kościeszna
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="textSecondary"
-                  align="right"
-                >
-                  Project manager
-                </Typography>
-              </CardContent>
-              <Typography
-                color="textSecondary"
-                className={classes.textCover}
-                align="right"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Exercitationem et, excepturi ipsam accusamus dolor expedita
-                vitae reiciendis a molestiae? Aliquam est obcaecati asperiores
-                iste dolor beatae sit iusto eum suscipit!
-              </Typography>
-            </div>
-          </Card>
-        </Paper>
-      </Grid>
-      <Grid
-        container
-        direction="column"
-        justify="space-around"
-        alignItems="flex-end"
-        className={classes.boxRight}
-      >
-        <Grid item xs={6}>
-          <Paper>
-            <Card className={classes.card}>
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    Sławomir Mróż
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Przedstawiciel Handlowy
-                  </Typography>
-                </CardContent>
-                <Typography color="textSecondary" className={classes.textCover}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Exercitationem et, excepturi ipsam accusamus dolor expedita
-                  vitae reiciendis a molestiae? Aliquam est obcaecati asperiores
-                  iste dolor beatae sit iusto eum suscipit!
-                </Typography>
-              </div>
-              <CardMedia
-                className={classes.cover}
-                image="/assets/sławomir.jpg"
-                title="Live from space album cover"
-              />
-            </Card>
-          </Paper>
+      <Hidden xsDown>
+        <LeftCardLarge />
+      </Hidden>
+      <Hidden xsDown>
+        <Grid
+          container
+          direction="column"
+          justify="space-around"
+          alignItems="flex-end"
+          className={classes.boxRight}
+        >
+          <RightCardLarge />
         </Grid>
-      </Grid>
+      </Hidden>
+      <Hidden smUp>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          className={classes.boxRight}
+        >
+          <LeftCardSmall />
+          <RightCardSmall />
+        </Grid>
+      </Hidden>
     </Grid>
   );
 };

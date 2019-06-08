@@ -13,6 +13,7 @@ mongoose.connect(
     console.log("connect to database");
   }
 );
+
 app.use(cors());
 app.use(
   "/graphql",
@@ -22,4 +23,4 @@ app.use(
   })
 );
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);

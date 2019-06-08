@@ -19,14 +19,14 @@ const AboutMe = () => {
   return (
     <Container fixed className={classes.container}>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <img
             src="assets/authorBlog.jpg"
             alt="zdjecie"
             className={classes.image}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={8}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
           officiis, eligendi harum numquam enim blanditiis eius nostrum dolores
           facere voluptatibus amet qui ab, vitae error? Ipsam dicta numquam cum

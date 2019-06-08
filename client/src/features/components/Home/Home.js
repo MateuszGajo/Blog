@@ -94,7 +94,6 @@ const Home = props => {
       })
       .then(resp => {
         setCategories(resp.data.categories);
-        console.log(resp);
       });
   }, []);
 
@@ -131,14 +130,20 @@ const Home = props => {
         <React.Fragment>
           {currentPosts.slice(0, 2).map(item => {
             return (
-              <Grid item xs={6} key={item.id}>
+              <Grid item sm={6} xs={12} key={item.id}>
                 <CardPrimary item={item} />
               </Grid>
             );
           })}
           {currentPosts.slice(2, currentPosts.length).map(item => {
             return (
-              <Grid item xs={4} className={classes.padding} key={item.id}>
+              <Grid
+                item
+                xs={12}
+                sm={4}
+                className={classes.padding}
+                key={item.id}
+              >
                 <CardSecondary item={item} />
               </Grid>
             );

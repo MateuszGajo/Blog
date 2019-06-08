@@ -3,6 +3,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
+import NavSmall from "./NavSmall";
+import Hidden from "@material-ui/core/Hidden";
 
 const Nav = props => {
   const [value, setValue] = useState(0);
@@ -31,14 +33,19 @@ const Nav = props => {
   }, []);
   return (
     <nav>
-      <AppBar position="static" color="default">
-        <Tabs variant="fullWidth" value={value} onChange={handleChange}>
-          <Tab label="Główna" component={Link} to="/" />
-          <Tab label="O mnie" component={Link} to="/aboutme" />
-          <Tab label="Opinie" component={Link} to="/opinions" />
-          <Tab label="Kontakt" component={Link} to="/contact" />
-        </Tabs>
-      </AppBar>
+      <Hidden xsDown>
+        <AppBar position="static" color="default">
+          <Tabs variant="fullWidth" value={value} onChange={handleChange}>
+            <Tab label="Główna" component={Link} to="/" />
+            <Tab label="O mnie" component={Link} to="/aboutme" />
+            <Tab label="Opinie" component={Link} to="/opinions" />
+            <Tab label="Kontakt" component={Link} to="/contact" />
+          </Tabs>
+        </AppBar>
+      </Hidden>
+      <Hidden smUp>
+        <NavSmall />
+      </Hidden>
     </nav>
   );
 };

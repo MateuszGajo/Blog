@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ListItems from "./ListItems";
 import { graphql } from "react-apollo";
 import postDetailQuery from "../../queries/postDetailQuery";
-import { readSync } from "fs";
 const Detail = props => {
   const { post } = props.data;
 
@@ -15,6 +14,7 @@ const Detail = props => {
     },
     photo: {
       maxHeight: "300px",
+      width: "100%",
       display: "block"
     },
     widthBlock: {
@@ -38,7 +38,7 @@ const Detail = props => {
               {post.title}
             </Typography>
           </Grid>
-          <Grid item xs={6} className={classes.widthBlock}>
+          <Grid item xs={12} sm={6} className={classes.widthBlock}>
             <img src={post.image} alt="" className={classes.photo} />
           </Grid>
           <Grid
@@ -48,7 +48,7 @@ const Detail = props => {
             alignItems="flex-start"
             className={classes.container}
           >
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4}>
               <Typography variant="h3" align="center" className={classes.title}>
                 Składniki
               </Typography>
@@ -56,7 +56,7 @@ const Detail = props => {
                 <ListItems key={product} item={product} />
               ))}
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={8}>
               <Grid item xs={12}>
                 <Typography
                   variant="h3"
