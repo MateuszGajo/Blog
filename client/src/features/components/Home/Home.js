@@ -46,9 +46,7 @@ const Home = props => {
       { id: id, name: value }
     ];
     const prevCategories = [...categories];
-    console.log(prevCategories);
     const newCategories = prevCategories.filter(category => category.id !== id);
-    console.log(newCategories);
     const nameCategoriesChoose = newCategoriesChoose.map(item => item.name);
     const newData = posts.filter(item =>
       nameCategoriesChoose.every(elem => item.categories.indexOf(elem) > -1)
@@ -99,7 +97,6 @@ const Home = props => {
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
-      {console.log(localStorage.usertoken)}
       <Grid item xs={12}>
         {categories.length > 0 ? (
           categories.map(category => (

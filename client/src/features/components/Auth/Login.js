@@ -41,8 +41,8 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    login(values).then(resp => console.log(resp));
-    setValues({ email: "", password: "" });
+    login(values).then(resp => setValues({ email: "", password: "" }));
+
   };
   if (localStorage.usertoken) return <Redirect to="/" />
   return (
@@ -61,7 +61,6 @@ const Login = () => {
       >
         <Grid container direction="column" alignItems="center" justify="center">
           <TextField
-            id="outlined-name"
             label="email"
             className={classes.textField}
             value={values.email}
@@ -70,7 +69,6 @@ const Login = () => {
             variant="outlined"
           />
           <TextField
-            id="outlined-name"
             label="password"
             type="password"
             className={classes.textField}

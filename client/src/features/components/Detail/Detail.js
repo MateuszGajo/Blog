@@ -34,7 +34,7 @@ const Detail = props => {
           className={classes.container}
         >
           <Grid item xs={12}>
-            <Typography variant="h1" align="center">
+            <Typography variant="h3" align="center">
               {post.title}
             </Typography>
           </Grid>
@@ -73,8 +73,8 @@ const Detail = props => {
           </Grid>
         </Grid>
       ) : (
-        <div>Ładowanie...</div>
-      )}
+          <div>Ładowanie...</div>
+        )}
     </React.Fragment>
   );
 };

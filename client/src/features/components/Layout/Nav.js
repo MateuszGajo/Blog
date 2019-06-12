@@ -5,9 +5,11 @@ import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
 import NavSmall from "./NavSmall";
 import Hidden from "@material-ui/core/Hidden";
+import Drawer from './Drawer';
 
 const Nav = props => {
   const [value, setValue] = useState(0);
+
   const handleChange = (e, newValue) => {
     setValue(newValue);
   };
@@ -33,9 +35,10 @@ const Nav = props => {
         setValue(4)
         break;
       default:
-        setValue(null);
+        setValue('');
         break;
     }
+
   }, [props.location.pathname]);
   return (
     <nav>
@@ -47,10 +50,10 @@ const Nav = props => {
             <Tab label="Opinie" component={Link} to="/opinions" />
             <Tab label="Kontakt" component={Link} to="/contact" />
             {localStorage.usertoken ?
-              <Tab label="Moje Konto" component={Link} to="/profile" /> :
+              <Drawer />
+              :
               <Tab label="Logowanie" component={Link} to="/auth/login" />
             }
-
           </Tabs>
         </AppBar>
       </Hidden>

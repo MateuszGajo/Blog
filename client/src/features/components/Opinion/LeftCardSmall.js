@@ -29,7 +29,7 @@ const LeftCardSmall = () => {
           <Typography gutterBottom variant="h5" component="h2" align="center">
             Monika Kościeszna
           </Typography>
-          <Typography variant="subtitle1" color="textprimary" align="center">
+          <Typography variant="subtitle1" color="textPrimary" align="center">
             Project manager
           </Typography>
           <Typography

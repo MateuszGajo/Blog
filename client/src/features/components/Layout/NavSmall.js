@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -17,7 +17,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
 const NavSmall = () => {
-  const drawerWidth = "80vw";
+  const drawerWidth = "70vw";
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -80,7 +80,8 @@ const NavSmall = () => {
 
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const navValue = [{ name: "Główna", link: "/" }, { name: "O mnie", link: "/aboutme" }, { name: "Opinie", link: '/opinions' }, { name: "Kontakt", link: "/contact" }]
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -89,7 +90,6 @@ const NavSmall = () => {
   function handleDrawerClose() {
     setOpen(false);
   }
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -135,56 +135,69 @@ const NavSmall = () => {
             {theme.direction === "rtl" ? (
               <ChevronLeftIcon />
             ) : (
-              <ChevronRightIcon />
-            )}
+                <ChevronRightIcon />
+              )}
           </IconButton>
         </div>
         <Divider />
         <List>
-          <ListItem
-            button
-            onClick={handleDrawerClose}
-            className={classes.paddingList}
-            component={Link}
-            to="/"
-          >
-            <ListItemText align="center">
-              <Typography variant="h4">Główna</Typography>
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            button
-            onClick={handleDrawerClose}
-            className={classes.paddingList}
-            component={Link}
-            to="/aboutme"
-          >
-            <ListItemText align="center">
-              <Typography variant="h4">O mnie</Typography>
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            button
-            onClick={handleDrawerClose}
-            className={classes.paddingList}
-            component={Link}
-            to="/Opinions"
-          >
-            <ListItemText align="center">
-              <Typography variant="h4">Opinie</Typography>
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            button
-            onClick={handleDrawerClose}
-            className={classes.paddingList}
-            component={Link}
-            to="/contact"
-          >
-            <ListItemText align="center">
-              <Typography variant="h4">Kontakt</Typography>
-            </ListItemText>
-          </ListItem>
+          {navValue.map(item => {
+            return (
+              <ListItem
+                button
+                onClick={handleDrawerClose}
+                className={classes.paddingList}
+                component={Link}
+                to={item.link}
+                key={item.name}
+              >
+                <ListItemText align="center">
+                  <Typography variant="h4">{item.name}</Typography>
+                </ListItemText>
+              </ListItem>
+            )
+          })}
+          {localStorage.usertoken ?
+            <React.Fragment>
+              <ListItem
+                button
+                onClick={handleDrawerClose}
+                className={classes.paddingList}
+                component={Link}
+                to={'/profile'}
+              >
+                <ListItemText align="center">
+                  <Typography variant="h4">Profil</Typography>
+                </ListItemText>
+              </ListItem>
+              <ListItem
+                button
+                onClick={() => {
+                  handleDrawerClose()
+                  localStorage.setItem('usertoken', "")
+                }
+                }
+                className={classes.paddingList}
+                component={Link}
+                to={'/auth/login'}
+              >
+                <ListItemText align="center">
+                  <Typography variant="h4">Wyloguj</Typography>
+                </ListItemText>
+              </ListItem>
+            </React.Fragment> :
+            <ListItem
+              button
+              onClick={handleDrawerClose}
+              className={classes.paddingList}
+              component={Link}
+              to={'/auth/login'}
+            >
+              <ListItemText align="center">
+                <Typography variant="h4">Zaloguj</Typography>
+              </ListItemText>
+            </ListItem>
+          }
         </List>
       </Drawer>
     </div>

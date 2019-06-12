@@ -70,7 +70,7 @@ const Contact = () => {
           </Card>
         </Paper>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={4}>
         <Paper>
           <Card>
             <CardContent align="center">
@@ -82,7 +82,7 @@ const Contact = () => {
           </Card>
         </Paper>
       </Grid>
-    </Grid>
+    </Grid >
   );
 };
 

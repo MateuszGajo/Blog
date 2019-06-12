@@ -46,7 +46,7 @@ const RightCardLarge = () => {
           </div>
           <CardMedia
             className={classes.cover}
-            image="/assets/sławomir.jpg"
+            image="/assets/slawomir.jpg"
             title="Live from space album cover"
           />
         </Card>

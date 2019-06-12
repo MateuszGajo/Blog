@@ -23,14 +23,14 @@ const RightCardSmall = () => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/assets/sławomir.jpg"
+          image="/assets/slawomir.jpg"
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="center">
             Sławomir Mróż
           </Typography>
-          <Typography variant="subtitle1" color="textprimary" align="center">
+          <Typography variant="subtitle1" color="textPrimary" align="center">
             Przedstawiciel Handlowy
           </Typography>
           <Typography
