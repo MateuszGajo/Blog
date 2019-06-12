@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import userMutation from "../../mutation/userMutation";
-
+import { login } from "../../functions/userFunction";
+import { Redirect } from 'react-router-dom'
 const Login = () => {
+
   const useStyles = makeStyles(theme => ({
     container: {
       display: "flex",
@@ -29,16 +30,21 @@ const Login = () => {
   }));
 
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
+  const [values, setValues] = useState({
+    email: "",
+    password: ""
   });
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(values).then(resp => console.log(resp));
+    setValues({ email: "", password: "" });
+  };
+  if (localStorage.usertoken) return <Redirect to="/" />
   return (
     <Grid
       container
@@ -47,29 +53,36 @@ const Login = () => {
       alignItems="flex-start"
       className={classes.marginTop}
     >
-      <form className={classes.container} noValidate autoComplete="off">
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
         <Grid container direction="column" alignItems="center" justify="center">
           <TextField
             id="outlined-name"
-            label="Email"
+            label="email"
             className={classes.textField}
-            value={values.name}
-            onChange={handleChange("name")}
+            value={values.email}
+            onChange={handleChange("email")}
             margin="normal"
             variant="outlined"
           />
           <TextField
             id="outlined-name"
-            label="Password"
+            label="password"
+            type="password"
             className={classes.textField}
-            value={values.name}
-            onChange={handleChange("name")}
+            value={values.password}
+            onChange={handleChange("password")}
             margin="normal"
             variant="outlined"
           />
           <Button
             color="primary"
             variant="contained"
+            type="submit"
             className={classes.marginTop}
           >
             Zaloguj

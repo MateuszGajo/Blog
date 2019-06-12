@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { graphql } from "react-apollo";
 import userMutation from "../../mutation/userMutation";
+import { Redirect } from 'react-router-dom'
 
 const Login = props => {
   const useStyles = makeStyles(theme => ({
@@ -46,13 +47,13 @@ const Login = props => {
       variables: {
         firstName: values.firstName,
         lastName: values.lastName,
-        password: values.password,
-        email: values.email
+        email: values.email,
+        password: values.password
       }
     });
     setValues({ firstName: "", lastName: "", password: "", email: "" });
   };
-
+  if (localStorage.usertoken) return <Redirect to="/" />
   return (
     <Grid
       container
@@ -92,8 +93,8 @@ const Login = props => {
             label="Email"
             name="email"
             className={classes.textField}
-            value={values.password}
-            onChange={handleChange("password")}
+            value={values.email}
+            onChange={handleChange("email")}
             margin="normal"
             variant="outlined"
           />
@@ -102,8 +103,8 @@ const Login = props => {
             label="Password"
             name="password"
             className={classes.textField}
-            value={values.email}
-            onChange={handleChange("email")}
+            value={values.password}
+            onChange={handleChange("password")}
             margin="normal"
             variant="outlined"
           />
@@ -111,7 +112,7 @@ const Login = props => {
             color="primary"
             variant="contained"
             className={classes.marginTop}
-            onClick={handleSubmit}
+            type="submit"
           >
             Rejstracja
           </Button>

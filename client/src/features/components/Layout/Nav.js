@@ -29,11 +29,14 @@ const Nav = props => {
       case "/auth/login":
         setValue(4);
         break;
+      case "/profile":
+        setValue(4)
+        break;
       default:
         setValue(null);
         break;
     }
-  }, []);
+  }, [props.location.pathname]);
   return (
     <nav>
       <Hidden xsDown>
@@ -43,7 +46,11 @@ const Nav = props => {
             <Tab label="O mnie" component={Link} to="/aboutme" />
             <Tab label="Opinie" component={Link} to="/opinions" />
             <Tab label="Kontakt" component={Link} to="/contact" />
-            <Tab label="Logowanie" component={Link} to="/auth/login" />
+            {localStorage.usertoken ?
+              <Tab label="Moje Konto" component={Link} to="/profile" /> :
+              <Tab label="Logowanie" component={Link} to="/auth/login" />
+            }
+
           </Tabs>
         </AppBar>
       </Hidden>

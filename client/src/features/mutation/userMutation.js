@@ -10,8 +10,8 @@ const ADD_USER = gql`
     addUser(
       firstName: $firstName
       lastName: $lastName
-      password: $password
       email: $email
+      password: $password
     ) {
       firstName
     }

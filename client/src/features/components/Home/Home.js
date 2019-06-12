@@ -99,6 +99,7 @@ const Home = props => {
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
+      {console.log(localStorage.usertoken)}
       <Grid item xs={12}>
         {categories.length > 0 ? (
           categories.map(category => (
@@ -110,20 +111,20 @@ const Home = props => {
             />
           ))
         ) : (
-          <Chip label="Brak" />
-        )}
+            <Chip label="Brak" />
+          )}
       </Grid>
       <Grid item xs={12}>
         {categoriesChoose.length > 0
           ? categoriesChoose.map(category => (
-              <Chip
-                key={category.id}
-                className={classes.chip}
-                label={category.name}
-                onDelete={() => handleDelete(category.id, category.name)}
-                color="secondary"
-              />
-            ))
+            <Chip
+              key={category.id}
+              className={classes.chip}
+              label={category.name}
+              onDelete={() => handleDelete(category.id, category.name)}
+              color="secondary"
+            />
+          ))
           : null}
       </Grid>
       {loading ? (
@@ -150,8 +151,8 @@ const Home = props => {
           })}
         </React.Fragment>
       ) : (
-        <div>Ładowanie...</div>
-      )}
+          <div>Ładowanie...</div>
+        )}
     </Grid>
   );
 };
