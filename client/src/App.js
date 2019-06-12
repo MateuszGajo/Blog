@@ -8,6 +8,8 @@ import Contact from "./features/components/Contact/Contact";
 import AboutMe from "./features/components/AboutMe/AboutMe";
 import Opinions from "./features/components/Opinion/Opinion";
 import Detail from "./features/components/Detail/Detail";
+import Login from "./features/components/Auth/Login";
+import Register from "./features/components/Auth/Register";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -24,6 +26,8 @@ function App() {
             <Route path="/contact" component={Contact} />
             <Route path="/aboutme" component={AboutMe} />
             <Route path="/opinions" component={Opinions} />
+            <Route path="/auth/login" component={Login} />
+            <Route path="/auth/register" component={Register} />
             <Route path="/posts/:id" component={Detail} />
           </Switch>
         </Router>

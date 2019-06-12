@@ -9,8 +9,11 @@ const {
 } = graphql;
 const PostType = require("./types/PostType");
 const CategoryType = require("./types/CategoryType");
-const PostSchema = require("../models/post");
-const CategorySchema = require("../models/category");
+const UserType = require("./types/UserType");
+
+const PostModel = require("../models/post");
+const CategoryModel = require("../models/category");
+const userModel = require("../models/user");
 
 const RootQueries = new GraphQLObjectType({
   name: "RootQueryType",
@@ -19,19 +22,26 @@ const RootQueries = new GraphQLObjectType({
       type: PostType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return PostSchema.findById(args.id);
+        return PostModel.findById(args.id);
       }
     },
     posts: {
       type: GraphQLList(PostType),
       resolve(parent, args) {
-        return PostSchema.find({});
+        return PostModel.find({});
       }
     },
     categories: {
       type: GraphQLList(CategoryType),
       resolve(paren, args) {
-        return CategorySchema.find({});
+        return CategoryModel.find({});
+      }
+    },
+    user: {
+      type: UserType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return userModel.findById(args.id);
       }
     }
   }
@@ -51,7 +61,7 @@ const RootMutation = new GraphQLObjectType({
         categories: { type: GraphQLList(GraphQLString) }
       },
       resolve(parent, args) {
-        return new PostSchema({ ...args }).save();
+        return new PostModel({ ...args }).save();
       }
     },
     addCategory: {
@@ -60,7 +70,21 @@ const RootMutation = new GraphQLObjectType({
         name: { type: GraphQLString }
       },
       resolve(parent, args) {
-        return new CategorySchema(args).save();
+        return new CategoryModel(args).save();
+      }
+    },
+    addUser: {
+      type: UserType,
+      args: {
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        const hashPassword = userModel().hashPassword(args.password);
+        console.log(hashPassword);
+        return new userModel({ ...args, password: hashPassword }).save();
       }
     }
   }

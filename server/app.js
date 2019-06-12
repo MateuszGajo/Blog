@@ -1,11 +1,14 @@
 const express = require("express");
-const app = express();
 const graphqlHTTP = require("express-graphql");
-const schema = require("./schema/schema");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const schema = require("./schema/schema");
 
-mongoose.connect(
+const app = express();
+const authRoutes = require("./routes/auth-routes");
+
+const connect = mongoose.connect(
   `mongodb+srv://test:test123@cluster0-iog2r.mongodb.net/test?retryWrites=true&w=majority
 `,
   { useNewUrlParser: true },
@@ -22,5 +25,7 @@ app.use(
     graphiql: true
   })
 );
+app.use(bodyParser.json());
+app.use("/auth", authRoutes);
 
 app.listen(process.env.PORT || 4000);

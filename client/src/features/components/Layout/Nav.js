@@ -26,6 +26,9 @@ const Nav = props => {
       case "/contact":
         setValue(3);
         break;
+      case "/auth/login":
+        setValue(4);
+        break;
       default:
         setValue(null);
         break;
@@ -40,6 +43,7 @@ const Nav = props => {
             <Tab label="O mnie" component={Link} to="/aboutme" />
             <Tab label="Opinie" component={Link} to="/opinions" />
             <Tab label="Kontakt" component={Link} to="/contact" />
+            <Tab label="Logowanie" component={Link} to="/auth/login" />
           </Tabs>
         </AppBar>
       </Hidden>
