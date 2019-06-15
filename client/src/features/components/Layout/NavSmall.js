@@ -81,7 +81,12 @@ const NavSmall = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const navValue = [{ name: "Główna", link: "/" }, { name: "O mnie", link: "/aboutme" }, { name: "Opinie", link: '/opinions' }, { name: "Kontakt", link: "/contact" }]
+  const navValue = [
+    { name: "Główna", link: "/" },
+    { name: "O mnie", link: "/aboutme" },
+    { name: "Opinie", link: "/opinions" },
+    { name: "Kontakt", link: "/contact" }
+  ];
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -135,8 +140,8 @@ const NavSmall = () => {
             {theme.direction === "rtl" ? (
               <ChevronLeftIcon />
             ) : (
-                <ChevronRightIcon />
-              )}
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
@@ -155,16 +160,16 @@ const NavSmall = () => {
                   <Typography variant="h4">{item.name}</Typography>
                 </ListItemText>
               </ListItem>
-            )
+            );
           })}
-          {localStorage.usertoken ?
+          {localStorage.usertoken ? (
             <React.Fragment>
               <ListItem
                 button
                 onClick={handleDrawerClose}
                 className={classes.paddingList}
                 component={Link}
-                to={'/profile'}
+                to={"/profile"}
               >
                 <ListItemText align="center">
                   <Typography variant="h4">Profil</Typography>
@@ -173,31 +178,31 @@ const NavSmall = () => {
               <ListItem
                 button
                 onClick={() => {
-                  handleDrawerClose()
-                  localStorage.setItem('usertoken', "")
-                }
-                }
+                  handleDrawerClose();
+                  localStorage.setItem("usertoken", "");
+                }}
                 className={classes.paddingList}
                 component={Link}
-                to={'/auth/login'}
+                to={"/auth/login"}
               >
                 <ListItemText align="center">
                   <Typography variant="h4">Wyloguj</Typography>
                 </ListItemText>
               </ListItem>
-            </React.Fragment> :
+            </React.Fragment>
+          ) : (
             <ListItem
               button
               onClick={handleDrawerClose}
               className={classes.paddingList}
               component={Link}
-              to={'/auth/login'}
+              to={"/auth/login"}
             >
               <ListItemText align="center">
                 <Typography variant="h4">Zaloguj</Typography>
               </ListItemText>
             </ListItem>
-          }
+          )}
         </List>
       </Drawer>
     </div>

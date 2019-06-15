@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
+import { graphql, compose } from "react-apollo";
 //components
 import CardPrimary from "./CardPrimary";
 import CardSecondary from "./CardSecondary";
 import postQuery from "../../queries/postQuery";
 import categoryQuery from "../../queries/categoryQuery";
-import { client } from "../../../App";
 
 const Home = props => {
   const [currentPosts, setCurrentPosts] = useState([]);
@@ -75,28 +75,21 @@ const Home = props => {
   };
 
   useEffect(() => {
-    client
-      .query({
-        query: postQuery
-      })
-      .then(resp => {
-        setCurrentPosts(resp.data.posts);
-        setPosts(resp.data.posts);
-        setLoading(true);
-      })
-      .catch(err => console.log(err));
+    if (!props.post.loading) {
+      setCurrentPosts(props.post.posts);
+      setPosts(props.post.posts);
+      setLoading(true);
+      props.post.refetch({ query: postQuery });
+    }
 
-    client
-      .query({
-        query: categoryQuery
-      })
-      .then(resp => {
-        setCategories(resp.data.categories);
-      });
-  }, []);
+    if (!props.category.loading) {
+      setCategories(props.category.categories);
+    }
+  }, [props.post.posts]);
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
+      {console.log(props)}
       <Grid item xs={12}>
         {categories.length > 0 ? (
           categories.map(category => (
@@ -108,20 +101,20 @@ const Home = props => {
             />
           ))
         ) : (
-            <Chip label="Brak" />
-          )}
+          <Chip label="Brak" />
+        )}
       </Grid>
       <Grid item xs={12}>
         {categoriesChoose.length > 0
           ? categoriesChoose.map(category => (
-            <Chip
-              key={category.id}
-              className={classes.chip}
-              label={category.name}
-              onDelete={() => handleDelete(category.id, category.name)}
-              color="secondary"
-            />
-          ))
+              <Chip
+                key={category.id}
+                className={classes.chip}
+                label={category.name}
+                onDelete={() => handleDelete(category.id, category.name)}
+                color="secondary"
+              />
+            ))
           : null}
       </Grid>
       {loading ? (
@@ -148,10 +141,13 @@ const Home = props => {
           })}
         </React.Fragment>
       ) : (
-          <div>Ładowanie...</div>
-        )}
+        <div>Ładowanie...</div>
+      )}
     </Grid>
   );
 };
 
-export default Home;
+export default compose(
+  graphql(postQuery, { name: "post" }),
+  graphql(categoryQuery, { name: "category" })
+)(Home);

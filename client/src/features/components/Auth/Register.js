@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { graphql } from "react-apollo";
 import userMutation from "../../mutation/userMutation";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
-const Login = props => {
+const Register = props => {
   const useStyles = makeStyles(theme => ({
     container: {
       display: "flex",
@@ -53,7 +53,7 @@ const Login = props => {
     });
     setValues({ firstName: "", lastName: "", password: "", email: "" });
   };
-  if (localStorage.usertoken) return <Redirect to="/" />
+  if (localStorage.usertoken) return <Redirect to="/" />;
   return (
     <Grid
       container
@@ -125,4 +125,4 @@ const Login = props => {
   );
 };
 
-export default graphql(userMutation, { name: "userMutation" })(Login);
+export default graphql(userMutation, { name: "userMutation" })(Register);

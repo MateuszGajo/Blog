@@ -83,7 +83,6 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         const hashPassword = userModel().hashPassword(args.password);
-        console.log(hashPassword);
         return new userModel({ ...args, password: hashPassword }).save();
       }
     }

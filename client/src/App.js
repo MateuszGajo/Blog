@@ -10,7 +10,8 @@ import Opinions from "./features/components/Opinion/Opinion";
 import Detail from "./features/components/Detail/Detail";
 import Login from "./features/components/Auth/Login";
 import Register from "./features/components/Auth/Register";
-import Profile from './features/components/Profile/profile';
+import Profile from "./features/components/Profile/profile";
+import Post from "./features/components/Post/Post";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -30,6 +31,7 @@ function App() {
             <Route path="/auth/login" component={Login} />
             <Route path="/auth/register" component={Register} />
             <Route path="/profile" component={Profile} />
+            <Route path="/create/post" component={Post} />
             <Route path="/posts/:id" component={Detail} />
           </Switch>
         </Router>
@@ -38,4 +40,4 @@ function App() {
   );
 }
 
-export { App, client };
+export default App;

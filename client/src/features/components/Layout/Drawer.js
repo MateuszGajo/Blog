@@ -62,6 +62,7 @@ const Drawer = () => {
                 TransitionComponent={Fade}
             >
                 <MenuItem onClick={handleClose} component={Link} to="/profile">Profil</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/create/post">Dodaj post</MenuItem>
                 <MenuItem component={Link} to="/auth/login"
                     onClick={() => {
                         localStorage.setItem('usertoken', "")
