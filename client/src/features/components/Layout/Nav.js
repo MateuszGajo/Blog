@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import { Link } from "react-router-dom";
 import NavSmall from "./NavSmall";
 import Hidden from "@material-ui/core/Hidden";
-import Drawer from './Drawer';
+import Drawer from "./Drawer";
 
 const Nav = props => {
   const [value, setValue] = useState(0);
@@ -32,13 +32,15 @@ const Nav = props => {
         setValue(4);
         break;
       case "/profile":
-        setValue(4)
+        setValue(4);
+        break;
+      case "/create/post":
+        setValue(4);
         break;
       default:
-        setValue('');
+        setValue(0);
         break;
     }
-
   }, [props.location.pathname]);
   return (
     <nav>
@@ -49,11 +51,11 @@ const Nav = props => {
             <Tab label="O mnie" component={Link} to="/aboutme" />
             <Tab label="Opinie" component={Link} to="/opinions" />
             <Tab label="Kontakt" component={Link} to="/contact" />
-            {localStorage.usertoken ?
+            {localStorage.usertoken ? (
               <Drawer />
-              :
+            ) : (
               <Tab label="Logowanie" component={Link} to="/auth/login" />
-            }
+            )}
           </Tabs>
         </AppBar>
       </Hidden>

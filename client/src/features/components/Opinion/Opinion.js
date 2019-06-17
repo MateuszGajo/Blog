@@ -10,10 +10,6 @@ import RightCardSmall from "./RightCardSmall";
 
 const Opinions = () => {
   const useStyles = makeStyles(theme => ({
-    boxRight: {
-      paddingTop: "50px",
-      paddingRight: "50px"
-    },
     boxLeft: {
       paddingTop: "50px",
       paddingLeft: "50px"
@@ -49,21 +45,13 @@ const Opinions = () => {
       alignItems="flex-start"
       className={classes.boxLeft}
     >
-      <Hidden xsDown>
+      <Hidden smDown>
         <LeftCardLarge />
       </Hidden>
-      <Hidden xsDown>
-        <Grid
-          container
-          direction="column"
-          justify="space-around"
-          alignItems="flex-end"
-          className={classes.boxRight}
-        >
-          <RightCardLarge />
-        </Grid>
+      <Hidden smDown>
+        <RightCardLarge />
       </Hidden>
-      <Hidden smUp>
+      <Hidden mdUp>
         <Grid
           container
           direction="column"

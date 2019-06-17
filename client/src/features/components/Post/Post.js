@@ -64,7 +64,7 @@ const Post = props => {
     formData.append("file", file);
     console.log(file);
     try {
-      const res = axios
+      axios
         .post("/api/service", formData, {
           header: {
             "Content-Type": "multipart/form-data"

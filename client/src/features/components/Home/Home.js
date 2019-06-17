@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
 import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
-import { graphql, compose } from "react-apollo";
+import { graphql } from "react-apollo";
 //components
 import CardPrimary from "./CardPrimary";
 import CardSecondary from "./CardSecondary";
 import postQuery from "../../queries/postQuery";
-import categoryQuery from "../../queries/categoryQuery";
+import Chips from "./Chips";
 
 const Home = props => {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [categoriesChoose, setCategoriesChoose] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const useStyles = makeStyles(theme => ({
     card: {
@@ -39,39 +37,8 @@ const Home = props => {
   }));
 
   const classes = useStyles();
-  const handleClick = (value, id) => {
-    const prevCategoriesChoose = categoriesChoose;
-    const newCategoriesChoose = [
-      ...prevCategoriesChoose,
-      { id: id, name: value }
-    ];
-    const prevCategories = [...categories];
-    const newCategories = prevCategories.filter(category => category.id !== id);
-    const nameCategoriesChoose = newCategoriesChoose.map(item => item.name);
-    const newData = posts.filter(item =>
-      nameCategoriesChoose.every(elem => item.categories.indexOf(elem) > -1)
-    );
-
-    setCategoriesChoose(newCategoriesChoose);
-    setCategories(newCategories);
-    setCurrentPosts(newData);
-  };
-
-  const handleDelete = (id, value) => {
-    const prevCategories = categories;
-    const newCategories = [...prevCategories, { id: id, name: value }];
-    const prevCategoriesChoose = categoriesChoose;
-    const newCategoriesChoose = prevCategoriesChoose.filter(
-      category => category.id !== id
-    );
-    const nameCategoriesChoose = newCategoriesChoose.map(item => item.name);
-    const newData = posts.filter(item =>
-      nameCategoriesChoose.every(elem => item.categories.indexOf(elem) > -1)
-    );
-
-    setCategories(newCategories);
-    setCategoriesChoose(newCategoriesChoose);
-    setCurrentPosts(newData);
+  const takeCurrentPosts = props => {
+    setCurrentPosts(props);
   };
 
   useEffect(() => {
@@ -81,47 +48,16 @@ const Home = props => {
       setLoading(true);
       props.post.refetch({ query: postQuery });
     }
-
-    if (!props.category.loading) {
-      setCategories(props.category.categories);
-    }
   }, [props.post.posts]);
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
-      {console.log(props)}
-      <Grid item xs={12}>
-        {categories.length > 0 ? (
-          categories.map(category => (
-            <Chip
-              className={classes.chip}
-              key={category.id}
-              label={category.name}
-              onClick={() => handleClick(category.name, category.id)}
-            />
-          ))
-        ) : (
-          <Chip label="Brak" />
-        )}
-      </Grid>
-      <Grid item xs={12}>
-        {categoriesChoose.length > 0
-          ? categoriesChoose.map(category => (
-              <Chip
-                key={category.id}
-                className={classes.chip}
-                label={category.name}
-                onDelete={() => handleDelete(category.id, category.name)}
-                color="secondary"
-              />
-            ))
-          : null}
-      </Grid>
+      <Chips posts={posts} takeCurrentPosts={takeCurrentPosts} />
       {loading ? (
         <React.Fragment>
           {currentPosts.slice(0, 2).map(item => {
             return (
-              <Grid item sm={6} xs={12} key={item.id}>
+              <Grid item md={6} sm={12} key={item.id}>
                 <CardPrimary item={item} />
               </Grid>
             );
@@ -130,8 +66,8 @@ const Home = props => {
             return (
               <Grid
                 item
-                xs={12}
-                sm={4}
+                sm={12}
+                md={4}
                 className={classes.padding}
                 key={item.id}
               >
@@ -147,7 +83,4 @@ const Home = props => {
   );
 };
 
-export default compose(
-  graphql(postQuery, { name: "post" }),
-  graphql(categoryQuery, { name: "category" })
-)(Home);
+export default graphql(postQuery, { name: "post" })(Home);

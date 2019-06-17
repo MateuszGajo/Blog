@@ -46,7 +46,7 @@ const Contact = () => {
           Kontakt
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item sm={12} md={4}>
         <Paper>
           <Card>
             <CardContent align="center">
@@ -58,7 +58,7 @@ const Contact = () => {
           </Card>
         </Paper>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item sm={12} md={4}>
         <Paper>
           <Card>
             <CardContent align="center">
@@ -70,7 +70,7 @@ const Contact = () => {
           </Card>
         </Paper>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item sm={12} md={4}>
         <Paper>
           <Card>
             <CardContent align="center">
@@ -82,7 +82,7 @@ const Contact = () => {
           </Card>
         </Paper>
       </Grid>
-    </Grid >
+    </Grid>
   );
 };
 
