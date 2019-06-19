@@ -7,9 +7,6 @@ router.post("/service", (req, res) => {
   }
 
   const file = req.files.file;
-  console.log(file);
-
-  console.log(file.mimetype);
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     if (file.mimetype === "image/jpeg")
       file.name = Math.random() * 100000000000000000 + ".jpg";
@@ -22,7 +19,6 @@ router.post("/service", (req, res) => {
     );
     file.mv(filePath, err => {
       if (err) {
-        console.log(err);
         return res.status(500).send(err);
       }
       res.json({ fileName: file.name });

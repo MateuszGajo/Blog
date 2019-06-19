@@ -5,9 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { login } from "../../functions/userFunction";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 const Login = () => {
-
   const useStyles = makeStyles(theme => ({
     container: {
       display: "flex",
@@ -34,6 +33,7 @@ const Login = () => {
     email: "",
     password: ""
   });
+  const [error, setError] = useState("");
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -41,10 +41,16 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    login(values).then(resp => setValues({ email: "", password: "" }));
-
+    login(values)
+      .then(resp => {
+        if (resp) setValues({ email: "", password: "" });
+        else setError("Nieprawidłowe dane");
+      })
+      .catch(err => {
+        console.log("i am here");
+      });
   };
-  if (localStorage.usertoken) return <Redirect to="/" />
+  if (localStorage.usertoken) return <Redirect to="/" />;
   return (
     <Grid
       container
@@ -88,6 +94,11 @@ const Login = () => {
           <Typography variant="body1" gutterBottom>
             Nie masz jeszcze konta? <a href="/auth/register">Zarejstruj się</a>
           </Typography>
+          {error ? (
+            <Typography variant="body1" color="error" align="center">
+              {error}
+            </Typography>
+          ) : null}
         </Grid>
       </form>
     </Grid>
