@@ -97,7 +97,6 @@ const Post = props => {
   const handleChangeFile = e => {
     setFile(e.target.files[0]);
   };
-
   return (
     <form
       className={classes.container}
