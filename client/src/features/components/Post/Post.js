@@ -11,6 +11,9 @@ import Recipe from "./Recipe";
 import { graphql } from "react-apollo";
 import postMutation from "../../mutation/postMutation";
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/pl";
+moment.locale("pl");
 
 const Post = props => {
   const useStyles = makeStyles(theme => ({
@@ -62,7 +65,6 @@ const Post = props => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file);
     try {
       axios
         .post("/api/service", formData, {
@@ -79,7 +81,7 @@ const Post = props => {
               variables: {
                 ...values,
                 image: `/assets/${resp.data.fileName}`,
-                date: new Date().toISOString()
+                date: moment(new Date()).format("ll")
               }
             })
             .then(resp => props.history.push("/"))
