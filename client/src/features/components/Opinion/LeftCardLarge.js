@@ -17,11 +17,15 @@ const LeftCardLarge = () => {
     },
     cover: {
       width: "100%"
+    },
+    boxLeft: {
+      paddingTop: "50px",
+      paddingLeft: "50px"
     }
   }));
   const classes = useStyles();
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} md={8} lg={6} className={classes.boxLeft}>
       <Paper>
         <Card className={classes.card}>
           <CardMedia

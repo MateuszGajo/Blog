@@ -17,7 +17,6 @@ const Home = props => {
   const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: "100%",
-      padding: "50px",
       alignItems: "center",
       margin: 0
     },
@@ -57,7 +56,7 @@ const Home = props => {
         <React.Fragment>
           {currentPosts.slice(0, 2).map(item => {
             return (
-              <Grid item md={6} sm={12} key={item.id}>
+              <Grid item xs={12} md={8} lg={6} key={item.id}>
                 <CardPrimary item={item} />
               </Grid>
             );

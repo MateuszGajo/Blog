@@ -9,7 +9,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 const LeftCardSmall = () => {
   const useStyles = makeStyles({
     card: {
-      maxWidth: 345
+      maxWidth: 345,
+      margin: "30px 0"
     },
     media: {
       height: 140

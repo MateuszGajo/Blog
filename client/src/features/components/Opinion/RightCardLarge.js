@@ -36,7 +36,7 @@ const RightCardLarge = () => {
       alignItems="flex-end"
       className={classes.boxRight}
     >
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} md={8} lg={6}>
         <Paper>
           <Card className={classes.card}>
             <div className={classes.details}>
