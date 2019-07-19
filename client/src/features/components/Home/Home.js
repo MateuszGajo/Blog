@@ -47,7 +47,7 @@ const Home = props => {
       setLoading(true);
       props.post.refetch({ query: postQuery });
     }
-  }, [props.post.posts]);
+  }, [props.post, props.post.posts]);
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
