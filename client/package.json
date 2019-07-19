@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000 || https://stormy-chamber-67728.herokuapp.com"
+  "proxy": "https://stormy-chamber-67728.herokuapp.com"
 }

@@ -14,11 +14,7 @@ router.post("/service", (req, res) => {
       file.name = Math.random() * 100000000000000000 + ".jpg";
     else if (file.mimetype === "image/png")
       file.name = Math.random() * 100000000000000000 + ".png";
-    const filePath = path.join(
-      __dirname,
-      "/../../server/client/public/assets",
-      file.name
-    );
+    const filePath = path.join(__dirname, "/../client/build/assets", file.name);
     file.mv(filePath, err => {
       if (err) {
         return res.status(500).send(err);
