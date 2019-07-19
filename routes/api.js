@@ -10,10 +10,13 @@ router.post("/service", (req, res) => {
   const file = req.files.file;
   console.log(req.files.file);
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    if (file.size > 500000)
+      return res.json({ err: "Zdjęcie nie może przekraczać 200kb" });
     if (file.mimetype === "image/jpeg")
       file.name = Math.random() * 100000000000000000 + ".jpg";
     else if (file.mimetype === "image/png")
       file.name = Math.random() * 100000000000000000 + ".png";
+
     const filePath = path.join(__dirname, "/../client/build/assets", file.name);
     file.mv(filePath, err => {
       if (err) {
