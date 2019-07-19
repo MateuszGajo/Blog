@@ -25,6 +25,11 @@ const Login = () => {
     },
     marginTop: {
       marginTop: "30px"
+    },
+    auth: {
+      textDecoration: "none",
+      color: "#f50057",
+      fontWeight: "bold"
     }
   }));
 
@@ -75,7 +80,7 @@ const Login = () => {
             variant="outlined"
           />
           <TextField
-            label="password"
+            label="hasło"
             type="password"
             className={classes.textField}
             value={values.password}
@@ -91,14 +96,21 @@ const Login = () => {
           >
             Zaloguj
           </Button>
-          <Typography variant="body1" gutterBottom>
-            Nie masz jeszcze konta? <a href="/auth/register">Zarejstruj się</a>
-          </Typography>
           {error ? (
             <Typography variant="body1" color="error" align="center">
               {error}
             </Typography>
           ) : null}
+          <Typography
+            variant="body1"
+            gutterBottom
+            className={classes.marginTop}
+          >
+            Nie masz jeszcze konta?{" "}
+            <a href="/auth/register" className={classes.auth}>
+              Zarejstruj się
+            </a>
+          </Typography>
         </Grid>
       </form>
     </Grid>

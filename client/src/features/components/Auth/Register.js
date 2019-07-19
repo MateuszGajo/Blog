@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable no-useless-escape */
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -27,31 +28,55 @@ const Register = props => {
     },
     marginTop: {
       marginTop: "30px"
+    },
+    auth: {
+      textDecoration: "none",
+      color: "#f50057",
+      fontWeight: "bold"
     }
   }));
 
   const classes = useStyles();
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     firstName: "",
     lastName: "",
     password: "",
     email: ""
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleSubmit = e => {
     e.preventDefault();
+    const { firstName, lastName, password, email } = values;
+    if (firstName.length < 1)
+      return setErrors({ firstName: "Za krótkie imie" });
+    else if (lastName.length < 1)
+      return setErrors({ lastName: "za krótkie nazwisko" });
+    else if (
+      !/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/.test(email)
+    )
+      return setErrors({
+        email: "Email powinien mieć format Janek@Przykład.pl"
+      });
+    else if (password.length < 6 || password.length > 20)
+      return setErrors({
+        password: "Długośc hasła musi być od 6 do 20 znaków"
+      });
+    else setErrors({});
+
     props.userMutation({
       variables: {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
       }
     });
     setValues({ firstName: "", lastName: "", password: "", email: "" });
+    props.history.push("/auth/login");
   };
   if (localStorage.usertoken) return <Redirect to="/" />;
   return (
@@ -70,7 +95,7 @@ const Register = props => {
         <Grid container direction="column" alignItems="center" justify="center">
           <TextField
             id="outlined-name"
-            label="FirstName"
+            label="Imię"
             name="firstName"
             className={classes.textField}
             value={values.firstName}
@@ -78,9 +103,14 @@ const Register = props => {
             margin="normal"
             variant="outlined"
           />
+          {errors.firstName ? (
+            <Typography variant="body1" color="error" align="center">
+              {errors.firstName}
+            </Typography>
+          ) : null}
           <TextField
             id="outlined-name"
-            label="LastName"
+            label="Nazwisko"
             name="lastName"
             className={classes.textField}
             value={values.lastName}
@@ -88,6 +118,11 @@ const Register = props => {
             margin="normal"
             variant="outlined"
           />
+          {errors.lastName ? (
+            <Typography variant="body1" color="error" align="center">
+              {errors.lastName}
+            </Typography>
+          ) : null}
           <TextField
             id="outlined-name"
             label="Email"
@@ -98,9 +133,14 @@ const Register = props => {
             margin="normal"
             variant="outlined"
           />
+          {errors.email ? (
+            <Typography variant="body1" color="error" align="center">
+              {errors.email}
+            </Typography>
+          ) : null}
           <TextField
             id="outlined-name"
-            label="Password"
+            label="Hasło"
             name="password"
             className={classes.textField}
             value={values.password}
@@ -108,6 +148,11 @@ const Register = props => {
             margin="normal"
             variant="outlined"
           />
+          {errors.password ? (
+            <Typography variant="body1" color="error" align="center">
+              {errors.password}
+            </Typography>
+          ) : null}
           <Button
             color="primary"
             variant="contained"
@@ -116,8 +161,15 @@ const Register = props => {
           >
             Rejstracja
           </Button>
-          <Typography variant="body1" gutterBottom>
-            Masz już konto? <a href="/auth/login">Zaloguj się</a>
+          <Typography
+            variant="body1"
+            gutterBottom
+            className={classes.marginTop}
+          >
+            Masz już konto?{" "}
+            <a href="/auth/login" className={classes.auth}>
+              Zaloguj się
+            </a>
           </Typography>
         </Grid>
       </form>

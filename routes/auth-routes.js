@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 
 process.env.SECRET_KEY = "secret";
 
-router.get("/login", (req, res) => res.send("login"));
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
   UserModel.findOne({ email }).then(user => {
