@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 const fileUpload = require("express-fileupload");
+const compression = require("compression");
 const schema = require("./schema/schema");
 const authRoutes = require("./routes/auth-routes");
 const apiRoutes = require("./routes/api");
@@ -28,7 +29,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(fileUpload());
 app.use("/auth", authRoutes);
 app.use("/api", apiRoutes);
-
+app.use(compression());
 if (process.env.NODE_ENV === "production") {
   //set static folder
   app.use(express.static("client/build"));

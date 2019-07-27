@@ -57,7 +57,7 @@ const Chips = props => {
       setCategories(props.category.categories);
     }
     setPosts(props.posts);
-  }, [props.posts]);
+  }, [props.posts, props.category]);
   return (
     <React.Fragment>
       <Grid item xs={12}>

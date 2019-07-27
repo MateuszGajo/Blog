@@ -14,7 +14,7 @@ import Profile from "./features/components/Profile/profile";
 import Post from "./features/components/Post/Post";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+  uri: "https://cooking-blog.herokuapp.com/graphql"
 });
 
 function App() {

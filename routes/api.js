@@ -6,9 +6,7 @@ router.post("/service", (req, res) => {
   if (req.file === null) {
     return res.status(400).json({ msg: "No file upload" });
   }
-
   const file = req.files.file;
-  console.log(req.files.file);
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     if (file.size > 200000)
       return res.json({ err: "Zdjęcie nie może przekraczać 200kb" });

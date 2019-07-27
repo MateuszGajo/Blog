@@ -47,7 +47,7 @@ const Home = props => {
       setLoading(true);
       props.post.refetch({ query: postQuery });
     }
-  }, [props.post, props.post.posts]);
+  }, [props.post]);
 
   return (
     <Grid container spacing={2} className={classes.card} justify="center">
@@ -65,8 +65,9 @@ const Home = props => {
             return (
               <Grid
                 item
-                sm={12}
-                md={4}
+                xs={12}
+                md={8}
+                lg={6}
                 className={classes.padding}
                 key={item.id}
               >
