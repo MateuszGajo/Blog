@@ -2,4 +2,4 @@
 React, Apollo, Node, express, MongoDB(database), GraphQL
 
 ## demo
-https://cooking-blog.herokuapp.com
+https://a-cooks-blog.herokuapp.com/
