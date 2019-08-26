@@ -29,8 +29,4 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get("/service", (req, res) => {
-  res.send("hello worldaa");
-});
-
 module.exports = router;
