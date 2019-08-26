@@ -39,7 +39,7 @@ const Detail = props => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className={classes.widthBlock}>
-            <img src={post.image} alt="" className={classes.photo} />
+            <img src={post.image} alt="Author" className={classes.photo} />
           </Grid>
           <Grid
             container
@@ -73,8 +73,10 @@ const Detail = props => {
           </Grid>
         </Grid>
       ) : (
-          <div>Ładowanie...</div>
-        )}
+        <Typography variant="h4" component="p" align="center">
+          Ładowanie...
+        </Typography>
+      )}
     </React.Fragment>
   );
 };

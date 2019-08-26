@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import { login } from "../../functions/userFunction";
 import { Redirect } from "react-router-dom";
 const Login = () => {
@@ -107,9 +108,9 @@ const Login = () => {
             className={classes.marginTop}
           >
             Nie masz jeszcze konta?{" "}
-            <a href="/auth/register" className={classes.auth}>
-              Zarejstruj się
-            </a>
+            <Link href={"/auth/register"} className={classes.auth}>
+              Zarejstruj się!
+            </Link>
           </Typography>
         </Grid>
       </form>

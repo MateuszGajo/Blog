@@ -4,6 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const Recipe = props => {
   const useStyles = makeStyles(theme => ({
@@ -52,7 +53,9 @@ const Recipe = props => {
       </Typography>
 
       {stepList.length > 0 ? (
-        <div className={classes.wrapper}>{stepList.map(item => item)}</div>
+        <Box component="div" className={classes.wrapper}>
+          {stepList.map(item => item)}
+        </Box>
       ) : null}
       <Fab
         size="medium"

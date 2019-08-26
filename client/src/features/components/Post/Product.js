@@ -4,6 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const Products = props => {
   const useStyles = makeStyles(theme => ({
@@ -50,9 +51,9 @@ const Products = props => {
         Produkty
       </Typography>
       {productsList.length > 0 ? (
-        <div className={classes.productWrapper}>
+        <Box component="div" className={classes.productWrapper}>
           {productsList.map(item => item)}
-        </div>
+        </Box>
       ) : null}
       <Fab
         size="medium"

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import { graphql } from "react-apollo";
-//components
 import CardPrimary from "./CardPrimary";
 import CardSecondary from "./CardSecondary";
 import postQuery from "../../queries/postQuery";
@@ -77,7 +77,9 @@ const Home = props => {
           })}
         </React.Fragment>
       ) : (
-        <div>Ładowanie...</div>
+        <Typography variant="h4" component="p" align="center">
+          Ładowanie...
+        </Typography>
       )}
     </Grid>
   );

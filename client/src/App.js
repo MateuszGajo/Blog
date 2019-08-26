@@ -1,4 +1,5 @@
 import React from "react";
+import Box from "@material-ui/core/Box";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -20,7 +21,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <Box component="div" className="Container">
         <Router>
           <Route path="/" component={Nav} Data="" />
           <Switch>
@@ -35,7 +36,7 @@ function App() {
             <Route path="/posts/:id" component={Detail} />
           </Switch>
         </Router>
-      </div>
+      </Box>
     </ApolloProvider>
   );
 }

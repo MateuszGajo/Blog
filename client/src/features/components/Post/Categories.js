@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import categoryQuery from "../../queries/categoryQuery";
 import { graphql } from "react-apollo";
 
@@ -88,11 +89,11 @@ const Categories = props => {
           onChange={handleChange}
           input={<Input id="select-multiple-chip" />}
           renderValue={selected => (
-            <div className={classes.chips}>
+            <Box component="div" className={classes.chips}>
               {selected.map(value => (
                 <Chip key={value} label={value} className={classes.chip} />
               ))}
-            </div>
+            </Box>
           )}
           MenuProps={MenuProps}
         >

@@ -6,6 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 const LeftCardLarge = () => {
   const useStyles = makeStyles(theme => ({
     card: {
@@ -34,7 +35,7 @@ const LeftCardLarge = () => {
             title="Live from space album cover"
           />
           <CardContent>
-            <div className={classes.details}>
+            <Box component="div" className={classes.details}>
               <CardContent className={classes.content}>
                 <Typography component="h5" variant="h5" align="right">
                   Monika Kościeszna
@@ -53,7 +54,7 @@ const LeftCardLarge = () => {
                 vitae reiciendis a molestiae? Aliquam est obcaecati asperiores
                 iste dolor beatae sit iusto eum suscipit!
               </Typography>
-            </div>
+            </Box>
           </CardContent>
         </Card>
       </Paper>

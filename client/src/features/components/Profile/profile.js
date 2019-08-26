@@ -6,6 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import jwt_deocde from "jwt-decode";
 
 const Profile = () => {
@@ -50,7 +51,7 @@ const Profile = () => {
     <Container fixed>
       <Grid container direction="row" justify="center" alignItems="center">
         <Card className={classes.card}>
-          <div className={classes.details}>
+          <Box component="div" className={classes.details}>
             <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">
                 Imię
@@ -71,7 +72,7 @@ const Profile = () => {
                 {user.email}
               </Typography>
             </CardContent>
-          </div>
+          </Box>
           <CardMedia
             className={classes.cover}
             image="/assets/user.png"

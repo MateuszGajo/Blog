@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import { graphql } from "react-apollo";
 import userMutation from "../../mutation/userMutation";
 import { Redirect } from "react-router-dom";
@@ -167,9 +168,9 @@ const Register = props => {
             className={classes.marginTop}
           >
             Masz już konto?{" "}
-            <a href="/auth/login" className={classes.auth}>
+            <Link href={"/auth/login"} className={classes.auth}>
               Zaloguj się
-            </a>
+            </Link>
           </Typography>
         </Grid>
       </form>
